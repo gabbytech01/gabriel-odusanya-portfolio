@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F2EDE3;
+  color: #15130F;
+  font-feature-settings: "ss01" 1, "cv01" 1;
+}
+
+::selection {
+  background-color: #C1441E;
+  color: #F2EDE3;
+}
+
+/* Thin film-grain texture applied over the whole page for tactile, non-generic warmth */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Signature element: a single hand-drawn red-ink stroke under key words,
+   evoking a reviewer marking up a security report rather than a decorative underline. */
+.mark {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-accent), serif;
+  font-style: italic;
+  color: #C1441E;
+}
+
+.mark svg {
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -0.1em;
+  width: 104%;
+  height: 0.28em;
+  overflow: visible;
+}
+
+.mark path {
+  fill: none;
+  stroke: #C1441E;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 340;
+  stroke-dashoffset: 340;
+  animation: mark-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation-delay: 0.35s;
+}
+
+@keyframes mark-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.progress-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: #C1441E;
+  z-index: 70;
+  transform-origin: left;
+}
+
+.editorial-rule {
+  border-top: 1px solid #C9BCA0;
+}
+
+.editorial-rule-v {
+  border-left: 1px solid #C9BCA0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
